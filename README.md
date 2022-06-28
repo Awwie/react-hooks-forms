@@ -373,22 +373,22 @@ our component to indicate that the user tried to enter an invalid value:
 ```jsx
 function Form() {
   const [number, setNumber] = useState(0);
-  const [isInvalidNumber, setIsInvalidNumber] = useState(null);
+  const [error, setError] = useState(null);
 
   function handleNumberChange(event) {
     const newNumber = parseInt(event.target.value);
     if (newNumber >= 0 && newNumber <= 5) {
       setNumber(newNumber);
-      setIsInvalidNumber(null);
+      setError(null);
     } else {
-      setIsInvalidNumber(`${newNumber} is not a valid number!`);
+      setError(`${newNumber} is not a valid number!`);
     }
   }
 
   return (
     <form>
       <input type="number" value={number} onChange={handleNumberChange} />
-      {isInvalidNumber ? <span style={{ color: "red" }}>{isInvalidNumber}</span> : null}
+      {error ? <span style={{ color: "red" }}>{error}</span> : null}
     </form>
   );
 }
